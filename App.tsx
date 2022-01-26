@@ -29,7 +29,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Header from './src/components/Header';
-import { Todo } from './src/components/models/Todo';
+import TodoList from './src/components/TodoList';
+import { Todo } from './src/models/Todo';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -81,9 +82,8 @@ const App = () => {
 
           </View>
 
-          {todos.map(todo => {
-            return <Text key={todo.id}>{todo.todo}</Text>
-          })}
+          <TodoList todos={todos}/>
+          
         </View>
       </ScrollView>
     </SafeAreaView>
