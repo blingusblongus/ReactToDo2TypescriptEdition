@@ -29,6 +29,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Header from './src/components/Header';
+import { Todo } from './src/components/models/Todo';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,6 +39,17 @@ const App = () => {
   };
 
   const [todo, setTodo] = useState<string>('');
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const addTask = () => {
+    setTodos([...todos, {
+      todo: todo,
+      isDone: false,
+      id: Date.now(),
+    }])
+  }
+
+  console.log(todos);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -49,27 +61,30 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+
           <Header></Header>
-          <View style={{flexDirection: 'column', justifyContent: 'center',}}>
-          <TextInput
-            style={styles.input}
-            onChangeText={setTodo}
-            value={todo}
-            placeholder='Task Goes Here'
-          />
-          <Pressable style={[styles.addBtn, {
-            transform: [{
-              translateY: 0,
-            }]
-          }]}>
-            <View style={styles.circleBtn}>
-            <Text style={styles.btnText}>ADD</Text>
-            </View>
+
+          <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
             
-          </Pressable>
-        </View>
+            <TextInput
+              style={styles.input}
+              onChangeText={setTodo}
+              value={todo}
+              placeholder='Task Goes Here'/>
+
+            <Pressable style={styles.addBtn}
+              onPress={addTask}>
+              <View style={styles.circleBtn}>
+                <Text style={styles.btnText}>ADD</Text>
+              </View>
+            </Pressable>
+
           </View>
-          
+
+          {todos.map(todo => {
+            return <Text key={todo.id}>{todo.todo}</Text>
+          })}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -86,51 +101,23 @@ const styles = StyleSheet.create({
   },
   addBtn: {
     margin: 'auto',
+    marginRight: 20,
     position: 'absolute',
-    right: 30,
+    right: 5,
   },
   circleBtn: {
-    backgroundColor: 'blue',
+    backgroundColor: '#d5ebc0',
     width: 50,
     height: 50,
     borderRadius: 100,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    borderWidth: 1,
   },
   btnText: {
-    color: 'white',
     alignSelf: 'center',
-
   }
 });
 
 export default App;
-
-// const Section: React.FC<{
-//   title: string;
-// }> = ({children, title}) => {
-//   const isDarkMode = useColorScheme() === 'dark';
-//   return (
-//     <View style={styles.sectionContainer}>
-//       <Text
-//         style={[
-//           styles.sectionTitle,
-//           {
-//             color: isDarkMode ? Colors.white : Colors.black,
-//           },
-//         ]}>
-//         {title}
-//       </Text>
-//       <Text
-//         style={[
-//           styles.sectionDescription,
-//           {
-//             color: isDarkMode ? Colors.light : Colors.dark,
-//           },
-//         ]}>
-//         {children}
-//       </Text>
-//     </View>
-//   );
-// };
