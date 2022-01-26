@@ -6,7 +6,7 @@ import { StyleSheet,
 
 const Header = () => {
     return <View>
-        <Text style={styles.title}>To Do 2: The Typescriptening</Text>
+        <Text style={styles.title}>To Do 2: {'\n'} The Typescriptening</Text>
     </View>
 };
 
