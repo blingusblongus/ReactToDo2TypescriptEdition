@@ -62,6 +62,7 @@ const TodoItem: React.FC<Props> = ({ todo, todos, setTodos }: Props) => {
             onChangeText={setEditVal}
             onSubmitEditing={toggleEdit}
             style={styles.input}
+            onBlur={toggleEdit}
             ></TextInput>
             :
             <Text style={[styles.todoText, todo.isDone && { textDecorationLine: 'line-through' }]}>
