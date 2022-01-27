@@ -38,7 +38,6 @@ const App = () => {
   };
 
   const windowHeight = Dimensions.get('window').height;
-  const windowWidth = Dimensions.get('window').height;
 
   const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -60,8 +59,6 @@ const App = () => {
 
   useEffect(() => {
     inputRef.current?.focus();
-    console.log(inputRef.current)
-    console.log('triggered');
   }, [focus])
 
   return (
