@@ -112,6 +112,13 @@ const styles = StyleSheet.create({
     position: 'relative',
     fontSize: 25,
     backgroundColor: 'white',
+    shadowColor: 'black',
+    shadowRadius: 4,
+    shadowOpacity: 0.8,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    }
   },
   addBtn: {
     margin: 'auto',
