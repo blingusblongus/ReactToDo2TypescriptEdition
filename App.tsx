@@ -10,14 +10,10 @@
 
 import React, { useState } from 'react';
 import {
-  Button,
-  Pressable,
   SafeAreaView,
   ScrollView,
-  ShadowPropTypesIOS,
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   useColorScheme,
   View,
@@ -34,9 +30,6 @@ import { Todo } from './src/models/Todo';
 import { FAB, ThemeProvider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
-
-
-
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -44,7 +37,8 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const windowHeight = Dimensions.get('window').height;
+  const windowHeight: number = Dimensions.get('window').height;
+  const windowWidth: number = Dimensions.get('window').height;
 
   const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -70,43 +64,36 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={backgroundStyle}>
-            
+
           <View
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
             }}>
-              <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{...styles.linearGradient, height: windowHeight}}>
 
-            <Header></Header>
+            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ ...styles.linearGradient, height: windowHeight }}>
+              <Header></Header>
 
-            <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
+              <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
 
-              <TextInput
-                style={styles.input}
-                onChangeText={setTodo}
-                value={todo}
-                placeholder='Task Goes Here' />
+                <TextInput
+                  style={styles.input}
+                  onChangeText={setTodo}
+                  value={todo}
+                  placeholder='Task Goes Here' />
 
-              {/* <Pressable style={styles.addBtn}
-                onPress={addTask}>
-                <View style={styles.circleBtn}>
-                  <Text style={styles.btnText}>ADD</Text>
-                </View>
-              </Pressable> */}
+                <FAB
+                  style={styles.addBtn}
+                  icon={{ name: 'add', color: 'white' }}
+                  color="green"
+                  onPress={addTask}
+                />
 
-              <FAB
-                style={styles.addBtn}
-                icon={{ name: 'add', color: 'white' }}
-                color="green"
-                onPress={addTask}
-              />
+              </View>
 
-            </View>
-
-            <TodoList todos={todos} />
+              <TodoList todos={todos} />
             </LinearGradient>
           </View>
-      
+
         </ScrollView>
       </SafeAreaView>
     </ThemeProvider>
