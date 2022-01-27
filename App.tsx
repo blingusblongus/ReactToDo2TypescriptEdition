@@ -55,8 +55,6 @@ const App = () => {
     setTodo('');
   }
 
-  console.log(todos);
-
   return (
     <ThemeProvider>
       <SafeAreaView style={backgroundStyle}>
@@ -81,7 +79,8 @@ const App = () => {
                   style={styles.input}
                   onChangeText={setTodo}
                   value={todo}
-                  placeholder='Task Goes Here' />
+                  placeholder='Task Goes Here'
+                  onSubmitEditing={addTask} />
 
                 <FAB
                   style={styles.addBtn}
