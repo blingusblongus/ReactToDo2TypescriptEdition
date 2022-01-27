@@ -32,6 +32,7 @@ import Header from './src/components/Header';
 import TodoList from './src/components/TodoList';
 import { Todo } from './src/models/Todo';
 import { FAB, ThemeProvider } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -64,6 +65,7 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={backgroundStyle}>
+            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']}>
           <View
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -98,6 +100,7 @@ const App = () => {
             <TodoList todos={todos} />
 
           </View>
+          </LinearGradient>
         </ScrollView>
       </SafeAreaView>
     </ThemeProvider>

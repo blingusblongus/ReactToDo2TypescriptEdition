@@ -5,6 +5,7 @@ platform :ios, '11.0'
 
 target 'ReactToDo2TypescriptEdition' do
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   config = use_native_modules!
 
   use_react_native!(
