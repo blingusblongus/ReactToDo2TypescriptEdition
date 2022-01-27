@@ -13,27 +13,38 @@ let fontSize = 25;
 
 export default function TodoItem({ todo, todos, setTodos }: Props) {
   const wrinkledPaper = require('../images/wrinkled-paper.jpeg');
+
   const deleteTodo = (id: number) => {
     setTodos(todos.filter(todo => {
       return todo.id !== id;
     }));
   }
 
+  const toggleComplete = () => {
+    setTodos(todos.map(t => {
+      if (t.id === todo.id) todo.isDone = !todo.isDone;
+      return t;
+    }))
+  }
+
   return (
-    <ImageBackground source={wrinkledPaper} 
-      resizeMode="cover" 
+    <ImageBackground source={wrinkledPaper}
+      resizeMode="cover"
       style={styles.imgShadow}
       imageStyle={styles.image}
-      >
-    <View style={styles.todo}>
-        <Text style={styles.todoText}>{todo.todo}</Text>
+    >
+      <View style={styles.todo}>
+        <Text style={styles.todoText}>
+          {todo.todo} {todo.isDone && 'ITS DONE'}
+        </Text>
         <View style={styles.flex}>
-          <Icon name="check" size={fontSize * 1.3} style={{marginRight: -10}}></Icon>
-          <Icon name="edit" size={fontSize * 1.3} style={styles.iconMargins}></Icon>
-          <Icon name="delete" size={fontSize * 1.3} style={styles.iconMargins}
+          <Icon name="check" size={fontSize * 1.3}
+            onPress={toggleComplete} style={[styles.icon, { marginRight: -9 }]}></Icon>
+          <Icon name="edit" size={fontSize * 1.3} style={styles.icon}></Icon>
+          <Icon name="delete" size={fontSize * 1.3} style={styles.icon}
             onPress={() => deleteTodo(todo.id)}></Icon>
         </View>
-    </View>
+      </View>
     </ImageBackground>
   );
 }
@@ -50,6 +61,7 @@ const styles = StyleSheet.create({
   },
   todoText: {
     fontSize: fontSize,
+    maxWidth: '50%',
   },
   flex: {
     display: 'flex',
@@ -71,7 +83,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     margin: 3,
   },
-  iconMargins: {
+  icon: {
     marginLeft: 20,
   },
 });
