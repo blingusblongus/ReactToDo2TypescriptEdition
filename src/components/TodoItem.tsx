@@ -27,15 +27,19 @@ export default function TodoItem({ todo, todos, setTodos }: Props) {
     }))
   }
 
+  // if(todo.isDone){
+  //   styles.image.tintColor = 'rgba(255,255,255,0)'
+  // }
+
   return (
     <ImageBackground source={wrinkledPaper}
       resizeMode="cover"
       style={styles.imgShadow}
       imageStyle={styles.image}
     >
-      <View style={styles.todo}>
-        <Text style={styles.todoText}>
-          {todo.todo} {todo.isDone && 'ITS DONE'}
+      <View style={[styles.todo, todo.isDone && {backgroundColor: 'rgba(0,120,0,.2)'}]}>
+        <Text style={[styles.todoText, todo.isDone && {textDecorationLine: 'line-through'}]}>
+          {todo.todo}
         </Text>
         <View style={styles.flex}>
           <Icon name="check" size={fontSize * 1.3}
