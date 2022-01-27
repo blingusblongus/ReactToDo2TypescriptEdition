@@ -9,7 +9,7 @@ type Props = {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-let fontSize = 25;
+let fontSize = 20;
 
 export default function TodoItem({ todo, todos, setTodos }: Props) {
   const wrinkledPaper = require('../images/wrinkled-paper.jpeg');
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255, .15)'
   },
   todoText: {
     fontSize: fontSize,
