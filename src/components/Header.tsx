@@ -4,7 +4,7 @@ import { StyleSheet,
     Text, 
 } from 'react-native';
 
-const Header = () => {
+const Header: React.FC = () => {
     return <View>
         <Text style={styles.title}>To Do 2: {'\n'} The Typescriptening</Text>
     </View>

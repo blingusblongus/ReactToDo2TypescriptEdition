@@ -7,8 +7,7 @@ type Props = {
     todos: Todo[];
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
-
-export default function TodoList({todos, setTodos} : Props) {
+const TodoList: React.FC<Props> = ({todos, setTodos}) => {
 
   return (
     <View>
@@ -26,3 +25,5 @@ export default function TodoList({todos, setTodos} : Props) {
 }
 
 const styles = StyleSheet.create({});
+
+export default TodoList;

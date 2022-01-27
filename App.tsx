@@ -75,7 +75,7 @@ const App = () => {
             }}>
 
             <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ ...styles.linearGradient, height: windowHeight }}>
-              <Header/>
+              <Header />
 
               <Divider width={2}></Divider>
 

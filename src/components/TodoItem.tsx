@@ -11,7 +11,7 @@ type Props = {
 
 let fontSize = 20;
 
-export default function TodoItem({ todo, todos, setTodos }: Props) {
+  const TodoItem: React.FC<Props> = ({ todo, todos, setTodos }: Props) => {
   const wrinkledPaper = require('../images/wrinkled-paper.jpeg');
   const [edit, setEdit] = useState<boolean>(false);
   const [editVal, setEditVal] = useState<string>('');
@@ -125,3 +125,5 @@ const styles = StyleSheet.create({
     padding: 5,
   }
 });
+
+export default TodoItem;
