@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { View } from 'react-native';
+import React from 'react';
 import { Todo } from '../models/Todo';
 import TodoItem from './TodoItem';
 
@@ -23,7 +23,5 @@ const TodoList: React.FC<Props> = ({todos, setTodos}) => {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});
 
 export default TodoList;

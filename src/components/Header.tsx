@@ -6,7 +6,7 @@ import { StyleSheet,
 
 const Header: React.FC = () => {
     return <View>
-        <Text style={styles.title}>To Do 2: {'\n'} The Typescriptening</Text>
+        <Text style={styles.title}>To Do 2:{'\n'}The Typescriptening</Text>
     </View>
 };
 
@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'white',
-        // backgroundColor: '#d1feff',
     }
 })
 

@@ -11,7 +11,7 @@ type Props = {
 
 let fontSize = 20;
 
-  const TodoItem: React.FC<Props> = ({ todo, todos, setTodos }: Props) => {
+const TodoItem: React.FC<Props> = ({ todo, todos, setTodos }: Props) => {
   const wrinkledPaper = require('../images/wrinkled-paper.jpeg');
   const [edit, setEdit] = useState<boolean>(false);
   const [editVal, setEditVal] = useState<string>('');
@@ -54,7 +54,8 @@ let fontSize = 20;
       imageStyle={styles.image}
     >
       <View style={[styles.todo, todo.isDone && { backgroundColor: 'rgba(0,120,0,.2)' }]}>
-        {
+        
+        {/* Render input field on edit mode */
           edit ? <TextInput
             ref={inputRef}
             value={editVal}
