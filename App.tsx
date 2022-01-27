@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -42,6 +42,8 @@ const App = () => {
 
   const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
+  const inputRef = useRef<TextInput>(null);
+  const [focus, setFocus] = useState<boolean>(false);
 
   const addTask = () => {
     if (todo.length === 0) return;
@@ -53,7 +55,14 @@ const App = () => {
     }])
 
     setTodo('');
+    setFocus(!focus);
   }
+
+  useEffect(() => {
+    inputRef.current?.focus();
+    console.log(inputRef.current)
+    console.log('triggered');
+  }, [focus])
 
   return (
     <ThemeProvider>
@@ -76,11 +85,13 @@ const App = () => {
               <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
 
                 <TextInput
+                  ref={inputRef}
                   style={styles.input}
                   onChangeText={setTodo}
                   value={todo}
                   placeholder='Task Goes Here'
-                  onSubmitEditing={addTask} />
+                  onSubmitEditing={addTask}
+                  blurOnSubmit={false} />
 
                 <FAB
                   style={styles.addBtn}
