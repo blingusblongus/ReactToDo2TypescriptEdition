@@ -90,7 +90,7 @@ const App = () => {
 
               </View>
 
-              <TodoList todos={todos} />
+              <TodoList todos={todos} setTodos={setTodos} />
             </LinearGradient>
           </View>
 

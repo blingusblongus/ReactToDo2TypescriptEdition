@@ -6,18 +6,28 @@ import { fonts } from 'react-native-elements/dist/config';
 
 type Props = {
   todo: Todo;
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
 let fontSize = 25;
 
-export default function TodoItem({ todo }: Props) {
+export default function TodoItem({ todo, todos, setTodos }: Props) {
+
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter(todo => {
+      return todo.id !== id;
+    }));
+  }
+
   return (
     <View style={styles.todo}>
       <Text style={styles.todoText}>{todo.todo}</Text>
       <View style={styles.flex}>
         <Icon name="check" size={fontSize * 1.3}></Icon>
         <Icon name="edit" size={fontSize * 1.3}></Icon>
-        <Icon name="delete" size={fontSize * 1.3}></Icon>
+        <Icon name="delete" size={fontSize * 1.3}
+          onPress={() => deleteTodo(todo.id)}></Icon>
       </View>
     </View>
   );

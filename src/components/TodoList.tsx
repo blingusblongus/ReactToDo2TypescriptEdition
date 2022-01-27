@@ -5,15 +5,20 @@ import TodoItem from './TodoItem';
 
 type Props = {
     todos: Todo[];
+    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-export default function TodoList({todos} : Props) {
+export default function TodoList({todos, setTodos} : Props) {
 
   return (
     <View>
       {
           todos.map(todo => {
-              return <TodoItem todo={todo} key={todo.id}/>
+              return <TodoItem 
+                todo={todo} 
+                todos={todos}
+                setTodos={setTodos}
+                key={todo.id}/>
           })
       }
     </View>
