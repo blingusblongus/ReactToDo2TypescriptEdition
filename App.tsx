@@ -27,7 +27,7 @@ import {
 import Header from './src/components/Header';
 import TodoList from './src/components/TodoList';
 import { Todo } from './src/models/Todo';
-import { FAB, ThemeProvider } from 'react-native-elements';
+import { FAB, ThemeProvider, Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
 const App = () => {
@@ -72,6 +72,8 @@ const App = () => {
 
             <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ ...styles.linearGradient, height: windowHeight }}>
               <Header/>
+
+              <Divider width={2}></Divider>
 
               <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
 

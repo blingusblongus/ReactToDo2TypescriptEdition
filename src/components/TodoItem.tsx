@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Todo } from '../models/Todo';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { fonts } from 'react-native-elements/dist/config';
 
 type Props = {
   todo: Todo;
