@@ -6,6 +6,10 @@
 
 A client-side only to-do list built to explore and experiment with React-Native and Typescript. Tasks can be added, removed, marked complete, and edited.
 
+## Screenshots
+
+<img src="./screenshots/TD2_screen_1.png" width="200"/>
+
 ## Prerequisites
 - Node.js
 - An Xcode OR Android Studio development environment

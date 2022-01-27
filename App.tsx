@@ -86,7 +86,7 @@ const App = () => {
                   style={styles.input}
                   onChangeText={setTodo}
                   value={todo}
-                  placeholder='Task Goes Here'
+                  placeholder='Add A Task'
                   onSubmitEditing={addTask}
                   blurOnSubmit={false} />
 
