@@ -43,11 +43,15 @@ const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTask = () => {
+    if(todo.length === 0) return;
+
     setTodos([...todos, {
       todo: todo,
       isDone: false,
       id: Date.now(),
     }])
+
+    setTodo('');
   }
 
   console.log(todos);
