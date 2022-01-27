@@ -31,6 +31,7 @@ import {
 import Header from './src/components/Header';
 import TodoList from './src/components/TodoList';
 import { Todo } from './src/models/Todo';
+import { FAB, ThemeProvider } from 'react-native-elements';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -43,7 +44,7 @@ const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTask = () => {
-    if(todo.length === 0) return;
+    if (todo.length === 0) return;
 
     setTodos([...todos, {
       todo: todo,
@@ -57,40 +58,49 @@ const App = () => {
   console.log(todos);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+    <ThemeProvider>
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={backgroundStyle}>
+          <View
+            style={{
+              backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            }}>
 
-          <Header></Header>
+            <Header></Header>
 
-          <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
-            
-            <TextInput
-              style={styles.input}
-              onChangeText={setTodo}
-              value={todo}
-              placeholder='Task Goes Here'/>
+            <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
 
-            <Pressable style={styles.addBtn}
-              onPress={addTask}>
-              <View style={styles.circleBtn}>
-                <Text style={styles.btnText}>ADD</Text>
-              </View>
-            </Pressable>
+              <TextInput
+                style={styles.input}
+                onChangeText={setTodo}
+                value={todo}
+                placeholder='Task Goes Here' />
+
+              {/* <Pressable style={styles.addBtn}
+                onPress={addTask}>
+                <View style={styles.circleBtn}>
+                  <Text style={styles.btnText}>ADD</Text>
+                </View>
+              </Pressable> */}
+
+              <FAB
+                style={styles.addBtn}
+                icon={{ name: 'add', color: 'white' }}
+                color="green"
+                onPress={addTask}
+              />
+
+            </View>
+
+            <TodoList todos={todos} />
 
           </View>
-
-          <TodoList todos={todos}/>
-          
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 };
 
@@ -101,13 +111,14 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 20,
     borderRadius: 50,
-    position: 'relative'
+    position: 'relative',
+    fontSize: 25,
   },
   addBtn: {
     margin: 'auto',
     marginRight: 20,
     position: 'absolute',
-    right: 5,
+    right: 8,
   },
   circleBtn: {
     backgroundColor: '#d5ebc0',
