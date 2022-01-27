@@ -1,5 +1,5 @@
 import { ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Todo } from '../models/Todo';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -15,6 +15,7 @@ export default function TodoItem({ todo, todos, setTodos }: Props) {
   const wrinkledPaper = require('../images/wrinkled-paper.jpeg');
   const [edit, setEdit] = useState<boolean>(false);
   const [editVal, setEditVal] = useState<string>('');
+  const inputRef = useRef<TextInput>(null);
 
   const deleteTodo = () => {
     setTodos(todos.filter(t => {
@@ -29,10 +30,6 @@ export default function TodoItem({ todo, todos, setTodos }: Props) {
     }))
   }
 
-  const editTodo = () => {
-
-  }
-
   const toggleEdit = () => {
     if(edit){
       setTodos(todos.map(t => {
@@ -41,9 +38,14 @@ export default function TodoItem({ todo, todos, setTodos }: Props) {
       }))
     }else{
       setEditVal(todo.todo);
+     
     }
     setEdit(!edit);
   }
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [edit])
 
   return (
     <ImageBackground source={wrinkledPaper}
@@ -54,9 +56,11 @@ export default function TodoItem({ todo, todos, setTodos }: Props) {
       <View style={[styles.todo, todo.isDone && { backgroundColor: 'rgba(0,120,0,.2)' }]}>
         {
           edit ? <TextInput
+            ref={inputRef}
             value={editVal}
             onChangeText={setEditVal}
             onSubmitEditing={toggleEdit}
+            style={styles.input}
             ></TextInput>
             :
             <Text style={[styles.todoText, todo.isDone && { textDecorationLine: 'line-through' }]}>
@@ -115,4 +119,9 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: 20,
   },
+  input: {
+    fontSize: fontSize,
+    backgroundColor: 'white',
+    padding: 5,
+  }
 });
