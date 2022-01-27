@@ -37,8 +37,8 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const windowHeight: number = Dimensions.get('window').height;
-  const windowWidth: number = Dimensions.get('window').height;
+  const windowHeight = Dimensions.get('window').height;
+  const windowWidth = Dimensions.get('window').height;
 
   const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -71,7 +71,7 @@ const App = () => {
             }}>
 
             <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ ...styles.linearGradient, height: windowHeight }}>
-              <Header></Header>
+              <Header/>
 
               <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
 
