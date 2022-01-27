@@ -14,6 +14,12 @@ A client-side only to-do list built to explore and experiment with React-Native 
 - Node.js
 - An Xcode OR Android Studio development environment
 
+## Built with
+
+- react-native
+- react-native-elements
+- react-native-linear-gradient
+
 ## Get Started
 1. In terminal, run `npm install` to acquire dependencies
 2. For iOS: run `pod install`
