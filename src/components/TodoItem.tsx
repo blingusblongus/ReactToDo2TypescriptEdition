@@ -1,5 +1,5 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
 import { Todo } from '../models/Todo';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -13,10 +13,12 @@ let fontSize = 25;
 
 export default function TodoItem({ todo, todos, setTodos }: Props) {
   const wrinkledPaper = require('../images/wrinkled-paper.jpeg');
+  const [edit, setEdit] = useState<boolean>(false);
+  const [editVal, setEditVal] = useState<string>('');
 
-  const deleteTodo = (id: number) => {
-    setTodos(todos.filter(todo => {
-      return todo.id !== id;
+  const deleteTodo = () => {
+    setTodos(todos.filter(t => {
+      return t.id !== todo.id;
     }));
   }
 
@@ -27,9 +29,21 @@ export default function TodoItem({ todo, todos, setTodos }: Props) {
     }))
   }
 
-  // if(todo.isDone){
-  //   styles.image.tintColor = 'rgba(255,255,255,0)'
-  // }
+  const editTodo = () => {
+
+  }
+
+  const toggleEdit = () => {
+    if(edit){
+      setTodos(todos.map(t => {
+        if(t.id === todo.id) todo.todo = editVal;
+        return t;
+      }))
+    }else{
+      setEditVal(todo.todo);
+    }
+    setEdit(!edit);
+  }
 
   return (
     <ImageBackground source={wrinkledPaper}
@@ -37,16 +51,26 @@ export default function TodoItem({ todo, todos, setTodos }: Props) {
       style={styles.imgShadow}
       imageStyle={styles.image}
     >
-      <View style={[styles.todo, todo.isDone && {backgroundColor: 'rgba(0,120,0,.2)'}]}>
-        <Text style={[styles.todoText, todo.isDone && {textDecorationLine: 'line-through'}]}>
-          {todo.todo}
-        </Text>
+      <View style={[styles.todo, todo.isDone && { backgroundColor: 'rgba(0,120,0,.2)' }]}>
+        {
+          edit ? <TextInput
+            value={editVal}
+            onChangeText={setEditVal}
+            onSubmitEditing={toggleEdit}
+            ></TextInput>
+            :
+            <Text style={[styles.todoText, todo.isDone && { textDecorationLine: 'line-through' }]}>
+              {todo.todo}
+            </Text>
+        }
+
         <View style={styles.flex}>
           <Icon name="check" size={fontSize * 1.3}
             onPress={toggleComplete} style={[styles.icon, { marginRight: -9 }]}></Icon>
-          <Icon name="edit" size={fontSize * 1.3} style={styles.icon}></Icon>
+          <Icon name="edit" size={fontSize * 1.3} style={styles.icon}
+            onPress={toggleEdit}></Icon>
           <Icon name="delete" size={fontSize * 1.3} style={styles.icon}
-            onPress={() => deleteTodo(todo.id)}></Icon>
+            onPress={deleteTodo}></Icon>
         </View>
       </View>
     </ImageBackground>
