@@ -8,7 +8,6 @@
  * @format
  */
 
-import { transform } from '@babel/core';
 import React, { useState } from 'react';
 import {
   Button,
@@ -22,6 +21,7 @@ import {
   TextInput,
   useColorScheme,
   View,
+  Dimensions
 } from 'react-native';
 
 import {
@@ -34,12 +34,17 @@ import { Todo } from './src/models/Todo';
 import { FAB, ThemeProvider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
+
+
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const windowHeight = Dimensions.get('window').height;
 
   const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -65,11 +70,12 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={backgroundStyle}>
-            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']}>
+            
           <View
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
             }}>
+              <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{...styles.linearGradient, height: windowHeight}}>
 
             <Header></Header>
 
@@ -98,9 +104,9 @@ const App = () => {
             </View>
 
             <TodoList todos={todos} />
-
+            </LinearGradient>
           </View>
-          </LinearGradient>
+      
         </ScrollView>
       </SafeAreaView>
     </ThemeProvider>
@@ -116,6 +122,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     position: 'relative',
     fontSize: 25,
+    backgroundColor: 'white',
   },
   addBtn: {
     margin: 'auto',
@@ -135,7 +142,19 @@ const styles = StyleSheet.create({
   },
   btnText: {
     alignSelf: 'center',
-  }
+  },
+  backgroundStyle: {
+    position: 'absolute',
+    zIndex: 1,
+    width: 100,
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    zIndex: 5
+  },
 });
 
 export default App;
