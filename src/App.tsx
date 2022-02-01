@@ -14,9 +14,9 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Header from './src/components/Header';
-import TodoList from './src/components/TodoList';
-import { Todo } from './src/models/Todo';
+import Header from './components/Header';
+import TodoList from './components/TodoList';
+import { Todo } from './models/Todo';
 import { FAB, ThemeProvider, Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
